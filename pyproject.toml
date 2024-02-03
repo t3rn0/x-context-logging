@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "context"
+version = "0.1.0"
+description = "Passing context between web services (PoC)"
+authors = ["Dmitry Makarov <dmtern0vnik@gmail.com"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.1.1"
+isort = "^5.13.2"
+flake8 = "^5.0"
+
+
+[tool.poetry.group.server.dependencies]
+fastapi = "^0.109.1"
+loguru = "^0.7.2"
+uvicorn = "^0.27.0.post1"
+
+
+[tool.poetry.group.client.dependencies]
+requests = "^2.31.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
