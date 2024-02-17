@@ -1,10 +1,14 @@
+import asyncio
 import json
+import time
 
 from fastapi import APIRouter, FastAPI, Request
 from loguru import logger
 
 from context import Context
 from logger import setup_logger
+
+SLEEP_INTERVAL = 5
 
 setup_logger()
 
@@ -13,9 +17,16 @@ app = FastAPI()
 router = APIRouter(prefix="/root")
 
 
-@router.get("")
-async def some_get_method() -> None:
-    logger.info("Inside GET method.")
+@router.get("/async")
+async def async_get_method() -> None:
+    logger.info("Inside async GET method.")
+    await asyncio.sleep(SLEEP_INTERVAL)
+
+
+@router.get("/sync")
+def sync_get_method() -> None:
+    logger.info("Inside sync GET method.")
+    time.sleep(SLEEP_INTERVAL)
 
 
 @app.middleware("http")
